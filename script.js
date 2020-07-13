@@ -8,13 +8,12 @@ const post = document.querySelector('#post-list');
 const card = document.querySelector('.card');
 const cardFooter = document.querySelector('.card-footer');
 
-// const image = document.querySelector('.card-img-top');
 const cardBody = document.querySelector('.card-body');
 
 const header = document.querySelector('#postTitle');
 const paragraph = document.querySelector('[name="postContent"]');
 const author = document.querySelector('[name="postAuthor"]');
-const image = document.querySelector('[value="https://picsum.photos/500/200"]');
+const image = document.querySelector('[name="postImg"]');
 
 
 const button = document.querySelector('.btn-delete');
@@ -27,7 +26,7 @@ const input = document.querySelectorAll('.form-control');
 //creating elements
 const createNewPost = () => {
 
-    let img = document.createComment('img');
+    let img = document.createElement('img');
     img.src = `https://picsum.photos/500/200`;
     img.alt = 'Card image cap';
 
@@ -52,7 +51,8 @@ const createNewPost = () => {
     newHeader.textContent = `${header.value} by ${author.value}`;
     newParagraph.textContent = `${paragraph.value}`;
     img.textContent = `${image.value}`;
-    newDateFooter.textContent = `${cardFooter.value}`;
+    deletebtn.textContent = 'deleted entry';
+    newDateFooter.textContent = '10/07/2020';
 
     // append child of those elements
     post.appendChild(newCard);
@@ -67,7 +67,8 @@ const createNewPost = () => {
 }
 
 
-submitBtn.addEventListener('click', () => {
-    const newPosts = createNewPost();
-    card.insertAdjacentHTML('beforebegin', newPosts);
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const newPost = createNewPost();
+    card.insertAdjacentElement('beforebegin', newPost);
 })
